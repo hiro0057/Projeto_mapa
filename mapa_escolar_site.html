@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa da Escola - Vista Superior</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Mapa da Escola</h1>
+        
+        <div class="mapa-container">
+            <div class="mapa-grid">
+                <div class="area entrada" data-local="entrada">Entrada Principal</div>
+                <div class="area salas-aula" data-local="salas">Salas de Aula</div>
+                <div class="area professores" data-local="professores">Sala dos Professores</div>
+                <div class="area diretoria" data-local="diretoria">Diretoria</div>
+                <div class="area biblioteca" data-local="biblioteca">Biblioteca</div>
+                <div class="area banheiros" data-local="banheiros">Banheiros</div>
+                <div class="area quadra" data-local="quadra">Quadra</div>
+            </div>
+        </div>
+
+        <div class="info-container" id="infoContainer"></div>
+    </div>
+
+    <script>
+        const locais = {
+            entrada: {
+                nome: 'Entrada Principal',
+                imagem: 'https://images.unsplash.com/photo-1562516710-35c73d450ff3',
+                descricao: 'A entrada principal da escola possui uma área coberta e ampla, com portões de segurança e recepção. É o ponto de acesso para alunos, professores e visitantes.'
+            },
+            salas: {
+                nome: 'Salas de Aula',
+                imagem: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b',
+                descricao: 'Bloco com várias salas de aula equipadas com quadros, carteiras confortáveis e boa iluminação. Cada sala comporta aproximadamente 30 alunos.'
+            },
+            professores: {
+                nome: 'Sala dos Professores',
+                imagem: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655',
+                descricao: 'Espaço reservado para os professores com área de descanso, computadores para preparação de aulas e armários individuais. Local para reuniões pedagógicas.'
+            },
+            diretoria: {
+                nome: 'Diretoria',
+                imagem: 'https://images.unsplash.com/photo-1577412647305-991150c7d163',
+                descricao: 'Setor administrativo da escola onde ficam a direção, coordenação pedagógica e secretaria. Local para atendimento aos pais e resolução de questões administrativas.'
+            },
+            biblioteca: {
+                nome: 'Biblioteca',
+                imagem: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da',
+                descricao: 'Ambiente silencioso e acolhedor com grande acervo de livros, mesas de estudo e computadores para pesquisa. Oferece empréstimo de livros e espaço para leitura.'
+            },
+            banheiros: {
+                nome: 'Banheiros',
+                imagem: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a',
+                descricao: 'Banheiros femininos e masculinos, mantidos sempre limpos e organizados. Possui também banheiros adaptados para pessoas com deficiência.'
+            },
+            quadra: {
+                nome: 'Quadra Poliesportiva',
+                imagem: 'https://images.unsplash.com/photo-1504016798967-59a258e9386d',
+                descricao: 'Quadra coberta para práticas esportivas e eventos. Equipada para diversas modalidades como vôlei, basquete e futsal. Possui arquibancadas e vestiários.'
+            }
+        };
+
+        document.querySelectorAll('.area').forEach(area => {
+            area.addEventListener('click', () => {
+                const local = locais[area.dataset.local];
+                const infoContainer = document.getElementById('infoContainer');
+                
+                infoContainer.innerHTML = `
+                    <h2>${local.nome}</h2>
+                    <img src="${local.imagem}" alt="${local.nome}">
+                    <p>${local.descricao}</p>
+                `;
+                
+                infoContainer.classList.add('ativo');
+                
+                // Scroll suave até a informação
+                infoContainer.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
